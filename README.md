@@ -32,3 +32,10 @@ cd race_car_ws
 colcon build
 source install/setup.bash
 ```
+## Credits
+
+This repository is based on work of:
+- ossmos
+- Kevin Losing
+- Ahmad Al Shihabi
+- aloe-lia
