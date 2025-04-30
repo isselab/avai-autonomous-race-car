@@ -1,0 +1,560 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+    <model name="f110_car" canonical_link="base_link">
+
+        <link name='base_link'>
+            <gz_frame_id>base_link</gz_frame_id>
+            <pose>-0.27 0.085 0.05 0 0 0</pose>
+            <!--inertial>
+                <mass>1.14395</mass>
+                <inertia>
+                    <ixx>0.126164</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.416519</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.481014</izz>
+                </inertia>
+            </inertial-->
+            <visual name='visual'>
+                <geometry>
+                    <box>
+                        <size>0.54 0.17 0.08</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.5 0.5 1.0 1</ambient>
+                    <diffuse>0.5 0.5 1.0 1</diffuse>
+                    <specular>0.0 0.0 1.0 1</specular>
+                </material>
+            </visual>
+            <collision name='collision'>
+                <geometry>
+                    <box>
+                        <size>0.54 0.17 0.08</size>
+                    </box>
+                </geometry>
+            </collision>
+            <sensor name="imu_sensor" type="imu">
+                <always_on>1</always_on>
+                <update_rate>1</update_rate>
+                <visualize>true</visualize>
+                <topic>imu</topic>
+            </sensor>
+        </link>
+
+        <link name='front_left_wheel'>
+            <gz_frame_id>front_left_wheel</gz_frame_id>
+            <pose relative_to="base_link">0.11 0.15 -0.05 -1.5707 0 0</pose>
+            <inertial>
+                <mass>2</mass>
+                <inertia>
+                    <ixx>0.145833</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.145833</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.125</izz>
+                </inertia>
+            </inertial>
+            <visual name='visual'>
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.055</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1</ambient>
+                    <diffuse>0.2 0.2 0.2 1</diffuse>
+                    <specular>0.2 0.2 0.2 1</specular>
+                </material>
+            </visual>
+            <collision name='collision'>
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.055</radius>
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.5</mu>
+                            <mu2>1.0</mu2>
+                            <fdir1>0 0 1</fdir1>
+                        </ode>
+                        <bullet>
+                            <friction>0.5</friction>
+                            <friction2>1</friction2>
+                            <rolling_friction>0.1</rolling_friction>
+                        </bullet>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name='rear_left_wheel'>
+            <pose relative_to="base_link">-0.11 0.15 -0.05 -1.5707 0 0</pose>
+            <inertial>
+                <mass>2</mass>
+                <inertia>
+                    <ixx>0.145833</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.145833</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.125</izz>
+                </inertia>
+            </inertial>
+            <visual name='visual'>
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.055</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1</ambient>
+                    <diffuse>0.2 0.2 0.2 1</diffuse>
+                    <specular>0.2 0.2 0.2 1</specular>
+                </material>
+            </visual>
+            <collision name='collision'>
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.055</radius>
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.5</mu>
+                            <mu2>1.0</mu2>
+                            <fdir1>0 0 1</fdir1>
+                        </ode>
+                        <bullet>
+                            <friction>0.5</friction>
+                            <friction2>1</friction2>
+                            <rolling_friction>0.5</rolling_friction>
+                        </bullet>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name='front_right_wheel'>
+            <pose relative_to="base_link">0.11 -0.15 -0.05 -1.5707 0 0</pose>
+            <inertial>
+                <mass>2</mass>
+                <inertia>
+                    <ixx>0.145833</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.145833</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.125</izz>
+                </inertia>
+            </inertial>
+            <visual name='visual'>
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.055</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1</ambient>
+                    <diffuse>0.2 0.2 0.2 1</diffuse>
+                    <specular>0.2 0.2 0.2 1</specular>
+                </material>
+            </visual>
+            <collision name='collision'>
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.055</radius>
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.5</mu>
+                            <mu2>1.0</mu2>
+                            <fdir1>0 0 1</fdir1>
+                        </ode>
+                        <bullet>
+                            <friction>0.5</friction>
+                            <friction2>1</friction2>
+                            <rolling_friction>0.1</rolling_friction>
+                        </bullet>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name='rear_right_wheel'>
+            <pose relative_to="base_link">-0.11 -0.15 -0.05 -1.5707 0 0</pose>
+            <inertial>
+                <mass>2</mass>
+                <inertia>
+                    <ixx>0.145833</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.145833</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.125</izz>
+                </inertia>
+            </inertial>
+            <visual name='visual'>
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.055</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1</ambient>
+                    <diffuse>0.2 0.2 0.2 1</diffuse>
+                    <specular>0.2 0.2 0.2 1</specular>
+                </material>
+            </visual>
+            <collision name='collision'>
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.055</radius>
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.5</mu>
+                            <mu2>1.0</mu2>
+                            <fdir1>0 0 1</fdir1>
+                        </ode>
+                        <bullet>
+                            <friction>0.5</friction>
+                            <friction2>1</friction2>
+                            <rolling_friction>0.5</rolling_friction>
+                        </bullet>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name="front_left_wheel_steering_link">
+            <pose relative_to="front_left_wheel">-0 0 -0.04 1.570 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>
+                <inertia>
+                    <ixx>0.0153</ixx>
+                    <iyy>0.025</iyy>
+                    <izz>0.0153</izz>
+                </inertia>
+            </inertial>
+            <visual name="steering_link_visual">
+                <pose>0 0 0 0 0 0</pose>
+                <geometry>
+                    <cylinder>
+                        <length>0.025</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>1 1 1</ambient>
+                    <diffuse>1 1 1</diffuse>
+                </material>
+            </visual>
+        </link>
+
+        <link name="front_right_wheel_steering_link">
+            <pose relative_to="front_right_wheel">-0 0 0.04 1.570 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>
+                <inertia>
+                    <ixx>0.0153</ixx>
+                    <iyy>0.025</iyy>
+                    <izz>0.0153</izz>
+                </inertia>
+            </inertial>
+            <visual name="steering_link_visual">
+                <pose>0 0 0 0 0 0</pose>
+                <geometry>
+                    <cylinder>
+                        <length>0.025</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>1 1 1</ambient>
+                    <diffuse>1 1 1</diffuse>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="front_left_wheel_steering_joint" type="revolute">
+            <child>front_left_wheel_steering_link</child>
+            <parent>base_link</parent>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-0.6</lower>
+                    <upper>+0.6</upper>
+                    <velocity>1.0</velocity>
+                    <effort>25</effort>
+                </limit>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <joint name="front_right_wheel_steering_joint" type="revolute">
+            <parent>base_link</parent>
+            <child>front_right_wheel_steering_link</child>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-0.6</lower>
+                    <upper>+0.6</upper>
+                    <velocity>1.0</velocity>
+                    <effort>25</effort>
+                </limit>
+            </axis>
+        </joint>
+
+        <joint name='front_left_wheel_joint' type='revolute'>
+            <parent>front_left_wheel_steering_link</parent>
+            <child>front_left_wheel</child>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-1.79769e+308</lower>
+                    <upper>1.79769e+308</upper>
+                </limit>
+            </axis>
+        </joint>
+
+        <joint name='front_right_wheel_joint' type='revolute'>
+            <parent>front_right_wheel_steering_link</parent>
+            <child>front_right_wheel</child>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-1.79769e+308</lower>
+                    <upper>1.79769e+308</upper>
+                </limit>
+            </axis>
+        </joint>
+
+        <joint name='rear_left_wheel_joint' type='revolute'>
+            <parent>base_link</parent>
+            <child>rear_left_wheel</child>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-1.79769e+308</lower>
+                    <upper>1.79769e+308</upper>
+                </limit>
+            </axis>
+        </joint>
+
+        <joint name='rear_right_wheel_joint' type='revolute'>
+            <parent>base_link</parent>
+            <child>rear_right_wheel</child>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-1.79769e+308</lower>
+                    <upper>1.79769e+308</upper>
+                </limit>
+            </axis>
+        </joint>
+        <!-- SENSORS -->
+        <link name="camera_link">
+            <pose relative_to="base_link">0.12 0 0.155 0 0 0</pose>
+            <inertial>
+                <mass>0.0615752</mass>
+                <inertia>
+                <ixx>9.108e-05</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>2.51e-06</iyy>
+                <iyz>0</iyz>
+                <izz>8.931e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                <mesh>
+                    <uri>model://car/meshes/realsense.dae</uri>
+                </mesh>
+                </geometry>
+            </collision>
+            <visual name= "visual">
+                <pose>0 0 0 0 0 1.57</pose>
+                <geometry>
+                <mesh>
+                    <uri>model://car/meshes/realsense.dae</uri>
+                    <submesh>
+                    <name>RealSense</name>
+                    <center>false</center>
+                    </submesh>
+                </mesh>
+                </geometry>
+                <material>
+                <diffuse>1.0 1.0 1.0</diffuse>
+                <specular>1.0 1.0 1.0</specular>
+                <pbr>
+                    <metal>
+                    <albedo_map>model://car/materials/textures/RealSense_Albedo.png</albedo_map>
+                    <normal_map>model://car/materials/textures/RealSense_Normal.png</normal_map>
+                    <metalness_map>model://car/materials/textures/RealSense_Metalness.png</metalness_map>
+                    <roughness_map>model://car/materials/textures/RealSense_Roughness.png</roughness_map>
+                    </metal>
+                </pbr>
+                <script>
+                    <uri>model://car/materials/scripts/</uri>
+                    <uri>model://car/materials/textures/</uri>
+                    <name>UrbanTile/RealSense_Diffuse</name>
+                </script>
+                </material>
+            </visual>
+
+            <sensor name="realsense_d435" type="rgbd_camera">
+                <gz_frame_id>camera_link</gz_frame_id>
+                <topic>rgbd_camera</topic>
+                <update_rate>5</update_rate>
+                <camera name="camera">
+                <horizontal_fov>1.0472</horizontal_fov>
+                <lens>
+                    <intrinsics>
+                    <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
+                    <fx>554.25469</fx>
+                    <fy>554.25469</fy>
+                    <!-- cx = ( width + 1 ) / 2 -->
+                    <cx>320.5</cx>
+                    <!-- cy = ( height + 1 ) / 2 -->
+                    <cy>240.5</cy>
+                    <s>0</s>
+                    </intrinsics>
+                </lens>
+                <distortion>
+                    <k1>0.0</k1>
+                    <k2>0.0</k2>
+                    <k3>0.0</k3>
+                    <p1>0.0</p1>
+                    <p2>0.0</p2>
+                    <center>0.5 0.5</center>
+                </distortion>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.1</near>
+                    <far>300</far>
+                </clip>
+                <depth_camera>
+                    <clip>
+                    <near>0.1</near>
+                    <far>10</far>
+                    </clip>
+                </depth_camera>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+                </camera>
+            </sensor>
+        </link>
+
+        <link name="lidar_link">
+            <pose relative_to="base_link">0.12 0 0.055 0 0 0</pose>
+            <inertial>
+                <mass>0.1</mass>
+                <inertia>
+                    <ixx>0.000166667</ixx>
+                    <iyy>0.000166667</iyy>
+                    <izz>0.000166667</izz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.05 0.05 0.05</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.05 0.05 0.05</size>
+                    </box>
+                </geometry>
+            </visual>
+            <sensor name='gpu_lidar' type='gpu_lidar'>
+            <topic>scan</topic>
+            <update_rate>40</update_rate>
+            <lidar>
+                <scan>
+                    <horizontal>
+                        <samples>1081</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-2.356194</min_angle>
+                        <max_angle>2.356194</max_angle>
+                    </horizontal>
+                    <vertical>
+                        <samples>1</samples>
+                        <resolution>0.01</resolution>
+                        <min_angle>0</min_angle>
+                        <max_angle>0</max_angle>
+                    </vertical>
+                </scan>
+                <range>
+                    <min>0.06</min>
+                    <max>10.0</max>
+                    <resolution>0.01</resolution>
+                </range>
+            </lidar>
+            <always_on>1</always_on>
+            <visualize>true</visualize>
+            <gz_frame_id>lidar_link</gz_frame_id>
+        </sensor>
+    </link>
+
+    <joint name="camera_joint" type="fixed">
+        <parent>base_link</parent>
+        <child>camera_link</child>
+    </joint>
+    <joint name="lidar_joint" type="fixed">
+        <parent>base_link</parent>
+        <child>lidar_link</child>
+    </joint>
+
+    <plugin
+        filename="gz-sim-ackermann-steering-system"
+        name="gz::sim::systems::AckermannSteering">
+        <topic>cmd_vel</topic>
+        <odom_topic>odom</odom_topic>
+        <child_frame_id>base_link</child_frame_id>
+        <left_joint>front_left_wheel_joint</left_joint>
+        <left_joint>rear_left_wheel_joint</left_joint>
+        <right_joint>front_right_wheel_joint</right_joint>
+        <right_joint>rear_right_wheel_joint</right_joint>
+        <left_steering_joint>front_left_wheel_steering_joint</left_steering_joint>
+        <right_steering_joint>front_right_wheel_steering_joint</right_steering_joint>
+        <kingpin_width>.2</kingpin_width>
+        <steering_limit>0.5</steering_limit>
+        <wheel_base>0.3</wheel_base>
+        <wheel_separation>.22</wheel_separation>
+        <wheel_radius>0.055</wheel_radius>
+        <min_velocity>-0.5</min_velocity>
+        <max_velocity>0.5</max_velocity>
+        <min_acceleration>-0.25</min_acceleration>
+        <max_acceleration>0.25</max_acceleration>
+    </plugin>
+</model>
+</sdf>

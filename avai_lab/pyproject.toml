@@ -1,0 +1,29 @@
+[project]
+name = "avai_lab"
+version = "0.0.1"
+readme = {file = "README.txt", content-type = "text/markdown"}
+description = "functionality for the race car project"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+
+]
+
+dependencies = [
+    "numpy",
+    "pydantic",
+    "tomlkit",
+    "pynput",
+    "shapely",
+    "scipy"
+]
+
+[project.optional-dependencies]
+docs = ["mkdocs", "mkdocs-material", "mkdocstrings-python"]
+
+[build-system]
+requires = [
+    "setuptools >= 64",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"

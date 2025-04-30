@@ -1,0 +1,6 @@
+ [run]
+ source =
+     race_car_ws/src/gazebo/gazebo_f110/gazebo_f110
+     race_car_ws/src/f110_car/f110_car
+     race_car_ws/src/test_package/test_package/nodes
+     avai_lab/src

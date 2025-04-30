@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>f110_car</name>
+  <version>0.0.1</version>
+  <description>TODO: Package description</description>
+  <maintainer email="dummy@todo.todo">ossmos</maintainer>
+  <license>TODO: License declaration</license>
+
+  <depend>rclpy</depend>
+  <depend>ackermann_msgs</depend>
+  
+  <test_depend>ament_cmake_ros</test_depend>
+  <test_depend>launch</test_depend>
+  <test_depend>launch_ros</test_depend>
+  <test_depend>launch_testing</test_depend>
+  <test_depend>launch_testing_ament_cmake</test_depend>
+  <test_depend>test_m2p</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

@@ -1,0 +1,6 @@
+path: ./cones_dataset
+train: train/images
+val: valid/images
+
+nc: 3
+names: ['blue_cones', 'orange_cones', 'yellow_cones']
