@@ -127,15 +127,13 @@ __________
 ## Credits
 
 initially created by students of the AVAI Lab:  
-- ossmos  
+- Nicklas Osmers
 - Kevin Losing  
 - Ahmad Al Shihabi  
-- aloe-lia  
+- Julia Dawicki  
 
 later extended and refactored by isselab team members:
 - Prof. Dr. Thorsten Berger 
 - Dr. Sven Peldszus
 - Nicolas Kuhl
 - Sai Tarun Bhyri
-
-Copyright (c) 2011–2025 Team Buggy Busters, Ruhr Universität Bochum.
