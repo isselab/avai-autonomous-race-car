@@ -6,14 +6,14 @@ This is the repository for the course "Autonomous Vehicles And Artificial Intell
 # AVAI Autonomous Race Car
 
 ## Introduction
-This repository contains the **application-level software stack** for the AVAI autonomous race car (based on the F1TENTH platform).  
+This repository contains the **application-level software stack** for the AVAI autonomous race car (based on the RoboRacer platform).  
 It provides the launch files, perception modules, mapping, and planning components needed to run the buggy in **autonomous mode**.  
 The stack can be tested in **simulation** using Gazebo or deployed on the **physical buggy** together with the base software.
 
 _________
 _________
 
-## A small note on f1tenth repo (Base layer) and how our autonomous stack linked with this 
+## A small note on RoboRacer repo (Base layer) and how our autonomous stack linked with this 
 
   The autonomous buggy requires **two software layers** that must run together:
 
@@ -126,8 +126,16 @@ __________
 
 ## Credits
 
-This repository is based on work by:
+initially created by students of the AVAI Lab:  
 - ossmos  
 - Kevin Losing  
 - Ahmad Al Shihabi  
 - aloe-lia  
+
+later extended and refactored by isselab team members:
+- Prof. Dr. Thorsten Berger 
+- Dr. Sven Peldszus
+- Nicolas Kuhl
+- Sai Tarun Bhyri
+
+Copyright (c) 2011–2025 Team Buggy Busters, Ruhr Universität Bochum.
