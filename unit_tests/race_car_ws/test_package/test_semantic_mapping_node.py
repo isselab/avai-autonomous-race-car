@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Authors: Nicolas Kuhl
 import pytest
 import numpy as np
 from collections import defaultdict

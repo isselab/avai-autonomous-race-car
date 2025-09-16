@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Authors: Nicolas Kuhl
 import numpy as np
 import pytest
 from avai_lab.track_gen import (

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Authors: Nicolas Kuhl
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import PoseStamped, PointStamped

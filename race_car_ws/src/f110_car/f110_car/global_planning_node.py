@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Authors: Nicolas Kuhl
 #!/usr/bin/env python3
 from typing import List
 from enum import Enum

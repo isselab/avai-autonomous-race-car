@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Authors: Nicolas Kuhl
 import subprocess
 
 from .msg import Entity, EntityFactory, EntityFactory_V, IgnitionMsg, Pose, WorldControl
