@@ -1,24 +1,23 @@
-# AVAI Lab
+# AVAI Lab Software Stack
 
-This is the repository for the course "Autonomous Vehicles And Artificial Intelligence" (AVAI).
-
+This repository contains a software stack roboracer cars. It is used in RUB's course Autonomous Vehicles And Artificial Intelligence (AVAI) LAB.
 
 # AVAI Autonomous Race Car
 
 ## Introduction
-This repository contains the **application-level software stack** for the AVAI autonomous race car (based on the RoboRacer platform).  
-It provides the launch files, perception modules, mapping, and planning components needed to run the buggy in **autonomous mode**.  
-The stack can be tested in **simulation** using Gazebo or deployed on the **physical buggy** together with the base software.
+This repository contains the **application-level software stack** for the AVAI autonomous race car (based on the RoboRacer platform, previously called f1tenth).  
+It provides the launch files, perception modules, mapping, and planning components needed to run the car autonomous.  
+The stack can be tested in **simulation** using Gazebo or deployed on the physical race car together with the base software from RoboRacer.
 
 _________
 _________
 
 ## A small note on RoboRacer repo (Base layer) and how our autonomous stack linked with this 
 
-  The autonomous buggy requires **two software layers** that must run together:
+  The autonomous race car should built upon **two software layers** that must run together:
 
-  - **Base repo** → [f1tenth_system](https://github.com/f1tenth/f1tenth_system/tree/humble-devel)  
-  - **Application repo** → [avai-autonomous-race-car](https://github.com/isselab/avai-autonomous-race-car)  
+  - **Base layer repo** → [f1tenth_system](https://github.com/f1tenth/f1tenth_system/tree/humble-devel)  
+  - **Application layer repo (this one)** → [avai-autonomous-race-car](https://github.com/isselab/avai-autonomous-race-car)  
 
 ---
 
@@ -126,14 +125,15 @@ __________
 
 ## Credits
 
-initially created by students of the AVAI Lab:  
+ISSELAB team members:
+- Sai Tarun Bhyri
+- Sven Peldszus
+- Nicolas Kuhl
+- Thorsten Berger 
+
+Thanks to the following student team members of the AVAI lab course, who created the initial version, which we built upon:
 - Nicklas Osmers
 - Kevin Losing  
 - Ahmad Al Shihabi  
 - Julia Dawicki  
 
-later extended and refactored by isselab team members:
-- Prof. Dr. Thorsten Berger 
-- Dr. Sven Peldszus
-- Nicolas Kuhl
-- Sai Tarun Bhyri
