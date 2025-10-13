@@ -1,7 +1,3 @@
-<-- >
-SPDX-License-Identifier: MIT
-Authors: Nicolas Kuhl
--->
 <?xml version="1.0" ?>
 <sdf version="1.9">
     <world name="car_world">
@@ -165,270 +161,270 @@ Authors: Nicolas Kuhl
         </light>
             <include>
                 <name>base_link</name>
-                <uri>model://car/f110_car.sdf</uri>
+                <uri>model://car</uri>
                 <pose>0 0 0.2 0 0 0</pose>
             </include>
 
 
             <include>
                 <name>cone_0</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>0 1 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_1</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>1 1 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_2</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>2 1 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_3</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>3 0 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_4</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>4 -1 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_5</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>5 -2 0 0 0 0</pose>
             </include>
             <!-- Top border -->
             <include>
                 <name>cone_6</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>5 -3 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_7</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>5 -4 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_8</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>5 -5 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_9</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>5 -6 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_10</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>5 -7 0 0 0 0</pose>
             </include>
             <!-- right downwards diagonal -->
             <include>
                 <name>cone_11</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>4 -8 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_12</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>3 -9 0 0 0 0</pose>
             </include>
             <!-- right downwards border -->
             <include>
                 <name>cone_13</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>2 -10 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_14</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>1 -10 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_15</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>0 -10 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_16</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-1 -10 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_17</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-2 -10 0 0 0 0</pose>
             </include>
             <!-- right inwards diagonal -->
             <include>
                 <name>cone_18</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-3 -9 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_19</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-4 -8 0 0 0 0</pose>
             </include>
             <!-- right bottom border -->
             <include>
                 <name>cone_20</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-5 -7 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_21</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-5 -6 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_22</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-5 -5 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_23</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-5 -4 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_24</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-5 -3 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_25</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-5 -2 0 0 0 0</pose>
             </include>
             <!-- left upwards diagonal -->
             <include>
                 <name>cone_26</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-4 -1 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_27</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-3 0 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_28</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-2 1 0 0 0 0</pose>
             </include>
             <!-- left upwards border -->
             <include>
                 <name>cone_29</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>-1 1 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_30</name>
-                <uri>model://cone/blue-cone.sdf</uri>
+                <uri>model://blue_cone</uri>
                 <pose>0 1 0 0 0 0</pose>
             </include>
 
             <!-- inner ring -->
             <include>
                 <name>cone_31</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>0 -1 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_32</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>1 -1 0 0 0 0</pose>
             </include>
             <!-- upper left diagonal -->
             <include>
                 <name>cone_33</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>2 -2 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_34</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>3 -3 0 0 0 0</pose>
             </include>
             <!-- upper border -->
             <include>
                 <name>cone_35</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>3 -4 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_36</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>3 -5 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_37</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>3 -6 0 0 0 0</pose>
             </include>
             <!-- right downwards diagonal -->
             <include>
                 <name>cone_38</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>2 -7 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_39</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>1 -8 0 0 0 0</pose>
             </include>
             <!-- right downwards border -->
             <include>
                 <name>cone_40</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>0 -8 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_41</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>-1 -8 0 0 0 0</pose>
             </include>
             <!-- bottom right diagonal -->
             <include>
                 <name>cone_42</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>-2 -7 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_43</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>-3 -6 0 0 0 0</pose>
             </include>
             <!-- bottom border -->
             <include>
                 <name>cone_44</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>-3 -5 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_45</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>-3 -4 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_46</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>-3 -3 0 0 0 0</pose>
             </include>
             <!-- bottom left diagonal -->
             <include>
                 <name>cone_47</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>-2 -2 0 0 0 0</pose>
             </include>
             <include>
                 <name>cone_48</name>
-                <uri>model://cone/yellow-cone.sdf</uri>
+                <uri>model://yellow_cone</uri>
                 <pose>-1 -1 0 0 0 0</pose>
             </include>
 

@@ -32,7 +32,7 @@ class YoloConeDetectionNodeRGBD(Node):
         self.declare_parameter('camera_info_topic', '/camera/realsense2_camera/color/camera_info')
         self.declare_parameter('depth_topic', '/camera/realsense2_camera/depth/image_rect_raw')
         self.declare_parameter('detection_topic', '/yolo_cones')
-        self.declare_parameter('model_path', f'{__file__}/../../../runs/detect/train/weights/best.pt')
+        self.declare_parameter('model_path', '/home/tarunbhyri9/project_repo/avai-autonomous-race-car/race_car_ws/src/test_package/runs/detect/train/weights/best.pt')
         self.declare_parameter('confidence_threshold', 0.25)  # Confidence threshold for filtering yolo detections
         self.declare_parameter('frame_id', 'base_link')  # The target frame to which cone positions will be transformed.
         self.declare_parameter('patch_size', 5)  # The amount of pixels to average over for depth detection of the cone
