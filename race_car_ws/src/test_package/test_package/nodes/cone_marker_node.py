@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
+# Authors: Kevin Losing
 #!/usr/bin/env python3
 
 from avai_lab.enums import BLUE_CONE, ORANGE_CONE, YELLOW_CONE

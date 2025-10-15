@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl,Sven Peldszus
+# Authors: Nicklas Osmers, Kevin Losing, Ahmad Al Shihabi
 #!/usr/bin/env python3
 
 import math

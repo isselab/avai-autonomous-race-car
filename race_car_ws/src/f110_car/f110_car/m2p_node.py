@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
+# Authors: Kevin Losing, Ahmad Al Shihabi, Julia Dawicki
 #!/usr/bin/env python3
 import math
 import rclpy

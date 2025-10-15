@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl,Sven Peldszus
+# Authors: Kevin Losing, Sai Tarun Bhyri
 #!/usr/bin/env python3
 import math
 import numpy as np

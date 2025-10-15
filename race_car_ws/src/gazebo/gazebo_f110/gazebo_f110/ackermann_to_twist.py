@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
+# Authors: Nicklas Osmers
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node

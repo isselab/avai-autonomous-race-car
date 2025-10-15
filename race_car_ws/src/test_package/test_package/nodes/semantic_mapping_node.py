@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
+# Authors: Kevin Losing
 #!/usr/bin/env python3
 
 from collections import defaultdict
