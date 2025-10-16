@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Authors: Kevin Losing
+
 import pytest
 from unittest.mock import MagicMock
 from pynput.keyboard import KeyCode

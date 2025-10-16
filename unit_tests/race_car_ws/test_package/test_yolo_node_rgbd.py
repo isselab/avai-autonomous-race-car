@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Authors: Kevin Losing
+
 import pytest
 import math
 import numpy as np

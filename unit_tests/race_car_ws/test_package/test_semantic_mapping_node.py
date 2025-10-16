@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Authors: Kevin Losing
+
 import pytest
 import numpy as np
 from collections import defaultdict

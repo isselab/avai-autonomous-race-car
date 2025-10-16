@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Authors: Kevin Losing 
+
 import pytest
 from pathlib import Path
 from avai_lab.config import load_config, Config

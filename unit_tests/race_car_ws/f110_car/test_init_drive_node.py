@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Authors: Kevin Losing
+
 import math
 import pytest
 from unittest.mock import MagicMock, patch
