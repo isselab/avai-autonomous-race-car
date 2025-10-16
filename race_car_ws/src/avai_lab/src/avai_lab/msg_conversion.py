@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Authors: Nicklas Osmers
+
 import numpy as np
 import numpy.typing as npt
 
