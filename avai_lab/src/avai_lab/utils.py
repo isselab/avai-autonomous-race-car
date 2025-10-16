@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Authors: Nicklas Osmers, Kevin Losing
 import numpy.typing as npt
 import numpy as np
 from scipy.spatial.transform import Rotation

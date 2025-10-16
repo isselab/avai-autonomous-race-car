@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Authors: Nicklas Osmers, Julia Dawicki
+
 from pathlib import Path
 from typing import Optional
 

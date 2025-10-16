@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Authors: Nicklas Osmers
+
 from typing import Any, List, Optional
 from enum import Enum, auto
 
