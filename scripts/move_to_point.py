@@ -1,5 +1,8 @@
 """
 """
+# SPDX-License-Identifier: MIT
+# Authors: Nicklas Osmers
+
 import argparse
 
 import rclpy

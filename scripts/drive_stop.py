@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Authors: Nicklas Osmers
+
 from time import sleep
 
 import rclpy

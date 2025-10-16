@@ -2,6 +2,9 @@
 This script generates a track using the track gen function
 and spawns it using the standard cone model into gazebo
 """
+# SPDX-License-Identifier: MIT
+# Authors: Nicklas Osmers
+
 import os
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor

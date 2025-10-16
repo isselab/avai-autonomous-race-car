@@ -3,6 +3,9 @@ This scripts spawns a track into gazebo
 and publishes the cone positions to the 
 move to point node
 """
+# SPDX-License-Identifier: MIT
+# Authors: Nicklas Osmers
+
 from pathlib import Path
 import os
 from time import sleep
