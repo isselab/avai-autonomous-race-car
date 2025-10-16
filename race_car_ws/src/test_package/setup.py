@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
 from setuptools import find_packages, setup
 
 package_name = 'test_package'

@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
 import pytest
 import numpy as np
 from unittest.mock import MagicMock, patch

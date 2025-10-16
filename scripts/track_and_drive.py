@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
 """
 This scripts spawns a track into gazebo
 and publishes the cone positions to the 

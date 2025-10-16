@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
 import math
 import pytest
 import numpy as np

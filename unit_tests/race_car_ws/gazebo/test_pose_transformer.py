@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
 from race_car_ws.src.gazebo.gazebo_f110.gazebo_f110.pose_transformer import GazeboPoseTransformer
 import pytest
 import rclpy

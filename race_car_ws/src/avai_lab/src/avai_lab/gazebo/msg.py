@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
 from typing import Any, List, Optional
 from enum import Enum, auto
 

@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
 import pytest
 import math
 from std_msgs.msg import Header

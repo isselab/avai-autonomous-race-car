@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
 import math
 import pytest
 from unittest.mock import MagicMock

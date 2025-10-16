@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
 #!/usr/bin/env python3
 """
 Enums for cone labels.

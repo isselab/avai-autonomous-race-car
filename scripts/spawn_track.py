@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
 """
 This script generates a track using the track gen function
 and spawns it using the standard cone model into gazebo

@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: MIT
-# Authors: Nicolas Kuhl
 import pytest
 from avai_lab.enums import YELLOW_CONE, BLUE_CONE, ORANGE_CONE, UNKNOWN_CONE, string_to_label
 
