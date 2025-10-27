@@ -90,18 +90,11 @@ rosdep install --from-paths src --ignore-src -r -y
 pip install -e avai_lab
 ```
 
-4. Discover and install Python node dependencies (e.g. numpy, ultralytics, opencv):
+
+4. Now go and build the ROS2 workspace and export the GAZEBO model path through IGNITION_RESOURCE:
 
 ```sh
-cd race_car_ws/src
-pip install pipreqs
-pipreqs . --force --encoding=utf-8
-pip install -r requirements.txt
-```
-
-5. Now go and build the ROS2 workspace and export the GAZEBO model path through IGNITION_RESOURCE:
-
-```sh
+source /opt/ros/humble/setup.bash
 cd race_car_ws
 colcon build
 export IGN_GAZEBO_RESOURCE_PATH=:/home/...YOUR WORKSPACE PATH .../src/gazebo/gazebo_f110/model (if in case your model's not loading)
