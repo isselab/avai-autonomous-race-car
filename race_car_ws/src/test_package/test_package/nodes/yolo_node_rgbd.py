@@ -5,6 +5,7 @@ import math
 import numpy as np
 import rclpy
 from rclpy.node import Node
+from pathlib import Path
 
 from sensor_msgs.msg import Image, CameraInfo
 from geometry_msgs.msg import PointStamped
@@ -32,7 +33,18 @@ class YoloConeDetectionNodeRGBD(Node):
         self.declare_parameter('camera_info_topic', '/camera/realsense2_camera/color/camera_info')
         self.declare_parameter('depth_topic', '/camera/realsense2_camera/depth/image_rect_raw')
         self.declare_parameter('detection_topic', '/yolo_cones')
-        self.declare_parameter('model_path', '/home/tarunbhyri9/project_repo/avai-autonomous-race-car/race_car_ws/src/test_package/runs/detect/train/weights/best.pt')
+        workspace_root = Path(__file__).resolve().parents[7]
+        default_model_path = str(
+        workspace_root
+        / 'src'
+        / 'test_package'
+        / 'runs'
+        / 'detect'
+        / 'train'
+        / 'weights'
+        / 'best.pt'
+        )
+        self.declare_parameter('model_path', default_model_path)
         self.declare_parameter('confidence_threshold', 0.25)  # Confidence threshold for filtering yolo detections
         self.declare_parameter('frame_id', 'base_link')  # The target frame to which cone positions will be transformed.
         self.declare_parameter('patch_size', 5)  # The amount of pixels to average over for depth detection of the cone
@@ -66,6 +78,7 @@ class YoloConeDetectionNodeRGBD(Node):
         self.ts.registerCallback(self.synced_callback)
 
         self.get_logger().info("YOLO Cone Detection Node with synchronized topics started...")
+        self.get_logger().info(f"Using YOLO model at: {default_model_path}")
 
     def synced_callback(self, image_msg: Image, camera_info_msg: CameraInfo, depth_msg: Image):
         """
