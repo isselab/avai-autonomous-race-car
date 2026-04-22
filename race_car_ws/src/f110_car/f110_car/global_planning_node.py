@@ -14,7 +14,7 @@ import numpy as np
 import numpy.typing as npt
 
 from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped
-from nav_msgs.msg import Path
+from nav_msgs.msg import Path, Odometry
 from racecar_msgs.msg import SemanticGrid
 
 
@@ -51,6 +51,7 @@ class GlobalPlanningNode(Node):
         self.map_pose_subscriber = self.create_subscription(PoseWithCovarianceStamped,
                                                             self.get_parameter("map_pose_topic").value,
                                                             self.pose_callback, 10)
+        self.odom_subscriber = self.create_subscription(Odometry, "/odom", self.odom_to_pose, 10)
         self.semantic_grid_subscriber = self.create_subscription(SemanticGrid,
                                                                  self.get_parameter("semantic_grid_topic").value,
                                                                  self.semantic_grid_callback, 10)
@@ -67,8 +68,8 @@ class GlobalPlanningNode(Node):
         self.start_position = None
         self.state = State.START
 
-        self.exploration_node_cli = self.create_client(SetParameters, 'f110/exploration_node/set_parameters')
-        self.m2p_cli = self.create_client(SetParameters, 'f110/move_to_point/set_parameters')
+        self.exploration_node_cli = self.create_client(SetParameters, 'exploration_node/set_parameters')
+        self.m2p_cli = self.create_client(SetParameters, 'move_to_point/set_parameters')
         self.get_logger().info("Waiting for Exploration node service...")
         while not self.exploration_node_cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
@@ -76,6 +77,13 @@ class GlobalPlanningNode(Node):
         while not self.m2p_cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
         self.get_logger().info("Initialized")
+
+    def odom_to_pose(self, odom_msg: Odometry):
+        pose_msg = PoseWithCovarianceStamped()
+        pose_msg.header = odom_msg.header
+        pose_msg.pose.pose = odom_msg.pose.pose
+        pose_msg.pose.covariance = odom_msg.pose.covariance
+        self.pose_callback(pose_msg)
 
     def deactivate_exploration(self):
         req = SetParameters.Request()
@@ -102,7 +110,7 @@ class GlobalPlanningNode(Node):
         msg = Path()
         t = self.get_clock().now()
         msg.header.stamp = t.to_msg()
-        msg.header.frame_id = "map"
+        msg.header.frame_id = "base_link/odom"
         msg.poses = self.path
         self.path_publisher.publish(msg)
 
@@ -110,7 +118,7 @@ class GlobalPlanningNode(Node):
         if self.start_position is None:
             self.start_position = np.array([msg.pose.pose.position.x, msg.pose.pose.position.y])
         vehicle_location = np.array([msg.pose.pose.position.x, msg.pose.pose.position.y])
-        distance_to_start = np.linalg.norm((self.start_position, vehicle_location))
+        distance_to_start = np.linalg.norm(self.start_position - vehicle_location)
         match self.state:
             case State.START:
                 if distance_to_start > self.start_point_epsilon:

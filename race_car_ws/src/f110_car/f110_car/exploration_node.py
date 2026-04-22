@@ -13,6 +13,7 @@ from scipy.spatial.transform import Rotation
 
 from avai_lab import enums, utils, msg_conversion
 
+from nav_msgs.msg import Odometry
 from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped
 from racecar_msgs.msg import SemanticGrid
 from ackermann_msgs.msg import AckermannDriveStamped
@@ -33,6 +34,10 @@ class ExplorationNode(Node):
 
     def __init__(self):
         super().__init__("exploration_node")  # "NodeName" will be displayed in rqt_graph
+        self.declare_parameter("debug_cone_select", True)
+        self.declare_parameter("debug_every_n", 10)
+        self._dbg_count = 0
+
         self.declare_parameter("map_pose_topic", "/pose")
         self.declare_parameter("semantic_grid_topic", "/semantic_map")
         self.declare_parameter("target_point_topic", "/target_point")
@@ -43,6 +48,9 @@ class ExplorationNode(Node):
         self.map_pose_subscriber = self.create_subscription(PoseWithCovarianceStamped,
                                                             self.get_parameter("map_pose_topic").value,
                                                             self.pose_callback, 10)
+        self.odom_subscriber = self.create_subscription(Odometry,
+                                                            "/odom",
+                                                            self.odom_to_pose, 10)
         self.semantic_grid_subscriber = self.create_subscription(SemanticGrid,
                                                                  self.get_parameter("semantic_grid_topic").value,
                                                                  self.semantic_grid_callback, 10)
@@ -55,6 +63,13 @@ class ExplorationNode(Node):
         self.current_steering_angle = 0
         self.active = self.get_parameter("active").value
         self.add_on_set_parameters_callback(self.param_callback)
+
+    def odom_to_pose(self, odom_msg: Odometry):
+        pose_msg = PoseWithCovarianceStamped()
+        pose_msg.header = odom_msg.header
+        pose_msg.pose.pose = odom_msg.pose.pose
+        pose_msg.pose.covariance = odom_msg.pose.covariance
+        self.pose_callback(pose_msg)
 
     def drive_topic_callback(self, msg: AckermannDriveStamped):
         self.current_steering_angle = msg.drive.steering_angle
@@ -133,7 +148,7 @@ class ExplorationNode(Node):
         assert len(cone_positions) == len(labels), "The amount of labels must equal the amount of cone positions"
         vehicle_location = np.array([self.last_pose.pose.pose.position.x, self.last_pose.pose.pose.position.y])
         idx = labels == enums.YELLOW_CONE
-        for cone_pos, distance in zip(cone_positions[idx], distances):
+        for cone_pos, distance in zip(cone_positions[idx], distances[idx]):
             # check if the cone is in front of the vehicle
             if utils.is_right(vehicle_location, projected_point, cone_pos):
                 return cone_pos
@@ -194,8 +209,39 @@ class ExplorationNode(Node):
         distances = np.linalg.norm(cone_positions - projected_point, axis=1)
         # get the sorting index by distance
         dist_sort_idx = np.argsort(distances)
+
+        vehicle = np.array([self.last_pose.pose.pose.position.x, self.last_pose.pose.pose.position.y])
+        self.get_logger().info(
+        f"[SPLIT] vehicle=({vehicle[0]:.2f},{vehicle[1]:.2f}) "
+        f"projected=({projected_point[0]:.2f},{projected_point[1]:.2f}) "
+        f"cones={len(cone_positions)}")
+
+        sorted_cones = cone_positions[dist_sort_idx]
         sorted_labels = position_labels[dist_sort_idx]
         sorted_distances = distances[dist_sort_idx]
+
+        # --- DEBUG: label counts (are we even receiving blue/yellow?) ---
+        blue_cnt = int(np.sum(sorted_labels == enums.BLUE_CONE))
+        yellow_cnt = int(np.sum(sorted_labels == enums.YELLOW_CONE))
+        unk_cnt = int(np.sum(sorted_labels == enums.UNKNOWN_CONE))
+        orange_cnt = int(np.sum(sorted_labels == enums.ORANGE_CONE))
+
+        self.get_logger().info(
+            f"[COUNTS] blue={blue_cnt} yellow={yellow_cnt} unk={unk_cnt} orange={orange_cnt} total={len(sorted_labels)}"
+)
+
+
+
+        N = min(12, len(sorted_cones))
+        for i in range(N):
+            p = sorted_cones[i]
+            lab = int(sorted_labels[i])
+            d = float(sorted_distances[i])
+            side = "RIGHT" if utils.is_right(vehicle, projected_point, p) else "LEFT"
+            self.get_logger().info(
+                f"[CAND] i={i:02d} lab={lab} d={d:.2f} p=({p[0]:.2f},{p[1]:.2f}) side={side}"
+                )
+            
         # Find the closest yellow cone that is to the right of the projection vector
         right_cone_position = self.get_right_cone(cone_positions[dist_sort_idx], sorted_labels, projected_point,
                                                   sorted_distances)
@@ -210,6 +256,9 @@ class ExplorationNode(Node):
             return
         target_point = right_cone_position + (left_cone_position - right_cone_position) / 2
         self.target_point_publisher.publish(self.create_target_point_msg(*target_point))
+
+       
+
 
 
 def main(args=None):

@@ -498,7 +498,7 @@
             <sensor name='gpu_lidar' type='gpu_ray'>
             <gz_frame_id>lidar_link</gz_frame_id>
             <topic>scan</topic>
-            <update_rate>40</update_rate>
+            <update_rate>50</update_rate>
             <lidar>
                 <scan>
                     <horizontal>

@@ -20,12 +20,14 @@ def generate_launch_description():
     start_rviz = LaunchConfiguration("start_rviz", default=True)
     exploration_speed = LaunchConfiguration("exploration_speed", default=0.25)
     planning_speed = LaunchConfiguration("planning_speed", default=1.0)
+    map_file = TextSubstitution(text="/home/tarunbhyri9/project_repo/avai-autonomous-race-car/race_car_ws/map_1772124162.yaml")
     
     wasd_node = Node(
             package="test_package",
             namespace="f110",
             executable="wasd_control_node",
             name="wasd_control",
+            output='log',
             parameters=[{'use_sim_time': use_sim_time}],
             )
     move_to_point = Node(
@@ -33,48 +35,66 @@ def generate_launch_description():
             namespace="f110",
             executable="move_to_point",
             name="move_to_point",
-            parameters=[{"use_stim_time": use_sim_time, "max_speed": exploration_speed}]
+            output='log',
+            parameters=[{"use_sim_time": use_sim_time, "max_speed": exploration_speed}]
             )
+    m2p_delayed = TimerAction(period=20.0, actions=[move_to_point])
+
     exploration_node = Node(
             package="f110_car",
             namespace="f110",
             executable="exploration_node",
             name="exploration_node",
+            output='log',
             parameters=[{'use_sim_time': use_sim_time}],
             )
+    exploration_delayed = TimerAction(period=16.0, actions=[exploration_node])
+
     exploration_vis_node = Node(
             package="f110_car",
             namespace="f110",
             executable="exploration_vis_node",
             name="exploration_vis_node",
+            output='log',
             parameters=[{'use_sim_time': use_sim_time}],
             )
+
     global_planning_node = Node(
             package="f110_car",
             namespace="f110",
             executable="global_planning_node",
             name="global_planning_node",
+            output='screen',
             parameters=[{'use_sim_time': use_sim_time, "planning_speed": planning_speed}],
         )
+    global_planning_delayed = TimerAction(period=18.0, actions=[global_planning_node])
+
     yolo_node_rgbd = Node(
             package="test_package",
             namespace="f110",
             executable="yolo_node_rgbd",
             name="yolo_node_rgbd",
+            output='log',
             parameters=[{'use_sim_time': use_sim_time}],
             )
+    yolo_delayed = TimerAction(period=10.0, actions=[yolo_node_rgbd])
+
     semantic_mapping_node = Node(
             package="test_package",
             namespace="f110",
             executable="semantic_mapping_node",
             name="semantic_mapping_node",
+            output='log',
             parameters=[{'use_sim_time': use_sim_time}],
             )
+    semantic_mapping_delayed = TimerAction(period=12.0, actions=[semantic_mapping_node],)
+    
     cone_marker_node = Node(
             package="test_package",
             namespace="f110",
             executable="cone_marker_node",
             name="cone_marker_node",
+            output='log',
             parameters=[{'use_sim_time': use_sim_time}],
             )
     semantic_grid_visualizer_node = Node(
@@ -82,13 +102,17 @@ def generate_launch_description():
             namespace="f110",
             executable="semantic_grid_visualizer_node",
             name="semantic_grid_visualizer_node",
+            output='log',
             parameters=[{'use_sim_time': use_sim_time}],
             )
+    
+    
     ackermann_to_twist_node = Node(
             package="gazebo_f110",
             namespace="gazebo",
             executable="ackermann_to_twist",
             name="ackermann_to_twist",
+            output='screen',
             parameters=[{'use_sim_time': use_sim_time}],
             )
     transform_node = Node(
@@ -107,14 +131,36 @@ def generate_launch_description():
             parameters=[{'use_sim_time': use_sim_time}],
             condition=IfCondition(start_rviz)
             )
-    slam_launch = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(PathJoinSubstitution([get_package_share_directory("slam_toolbox"),
-                                                                "launch", "online_async_launch.py"])),
-            launch_arguments={
-                "slam_params_file": slam_toolbox_config,
-                "use_sim_time": "true"
-                }.items()
-            )
+    rviz_delayed = TimerAction(period=22.0, actions=[rviz])
+
+    #slam_launch = IncludeLaunchDescription(
+       #     PythonLaunchDescriptionSource(PathJoinSubstitution([get_package_share_directory("slam_toolbox"),
+      #                                                          "launch", "online_async_launch.py"])),
+      #      launch_arguments={
+      #          "slam_params_file": slam_toolbox_config,
+      #          "use_sim_time": "true"
+      #          }.items()
+     #       )
+    #slam_launch_delayed = TimerAction(
+    #period=5.0,
+    #actions=[slam_launch],)
+
+    localization_launch = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource(
+        PathJoinSubstitution([get_package_share_directory("slam_toolbox"), "launch", "localization_launch.py"])
+    ),
+    launch_arguments={
+        "use_sim_time": "true",
+        "map_file_name": map_file,
+        "slam_params_file": slam_toolbox_config,
+    }.items()
+    )
+
+    localization_launch_delayed = TimerAction(
+    period=8.0,
+    actions=[localization_launch],
+    )
+
 
     ros_gz_bridge_node = Node(
             package='ros_gz_bridge',
@@ -123,10 +169,10 @@ def generate_launch_description():
                 "/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist", 
                 "/scan@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan",
                 "/imu@sensor_msgs/msg/Imu@ignition.msgs.IMU",
-                "/model/base_link/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry",
+                "/odom@nav_msgs/msg/Odometry@ignition.msgs.Odometry",
                 "/world/car_world/pose/info@geometry_msgs/msg/PoseArray@ignition.msgs.Pose_V",
                 "/model/base_link/tf@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V",
-                "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
+                "/clock@rosgraph_msgs/msg/Clock@ignition.msgs.Clock",
                 "/rgbd_camera/image@sensor_msgs/msg/Image@ignition.msgs.Image",
                 "/rgbd_camera/camera_info@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo",
                 "/rgbd_camera/depth_image@sensor_msgs/msg/Image@ignition.msgs.Image",
@@ -135,10 +181,10 @@ def generate_launch_description():
                 ("/rgbd_camera/camera_info", "/camera/realsense2_camera/color/camera_info"),
                 ("/rgbd_camera/image", "/camera/realsense2_camera/color/image_raw"),
                 ("/rgbd_camera/depth_image", "/camera/realsense2_camera/depth/image_rect_raw"),
-                ("/model/base_link/odometry", "/odom"),
+                ("/odom", "/odom"),
                 ("/model/base_link/tf", "/tf"),
                 ],
-            output='screen',
+            output='log',
             parameters=[{'use_sim_time': use_sim_time}],
             )
 
@@ -157,9 +203,9 @@ def generate_launch_description():
                    PythonLaunchDescriptionSource(gz_launch_path),
                    launch_arguments={
                        'ign_args': [PathJoinSubstitution([pkg_gazebo_f110, "world", LaunchConfiguration('world_file')])],
-                       'on_exit_shutdown': 'True',
-                       'use_sim_time': 'True',
-                       'autostart': 'True'
+                       'on_exit_shutdown': 'true',
+                       'use_sim_time': 'true',
+                       'autostart': 'true'
                        }.items(),
                    )
                ]
@@ -187,11 +233,11 @@ def generate_launch_description():
                     name='gpu_lidar_tf',
                     output='screen',
                     arguments=[
-                        '0', '0', '0', '0.0', '0.0', '0.0',
+                        '0.12', '0', '0.055', '0.0', '0.0', '0.0',
                         'base_link', 'lidar_link'
                         ],
                     parameters=[{'use_sim_time': use_sim_time}],
-                    ),
+                    )
                 #Node(
                     #package='tf2_ros',
                     #executable='static_transform_publisher',
@@ -232,21 +278,21 @@ def generate_launch_description():
     #         arguments=[PathJoinSubstitution([pkg_gazebo_f110, "model", "car", "f110_car.sdf"])])
     return LaunchDescription([
         gazebo_launch_group,
-        move_to_point,
-        exploration_node,
-        exploration_vis_node,
-        global_planning_node,
-        wasd_node,
-        yolo_node_rgbd,
-        cone_marker_node,
-        semantic_mapping_node,
-        semantic_grid_visualizer_node,
+        m2p_delayed,
+        exploration_delayed,
+        #exploration_vis_node,
+        global_planning_delayed,
+        #wasd_node,
+        yolo_delayed,
+        #cone_marker_node,
+        semantic_mapping_delayed,
+        #semantic_grid_visualizer_node,
         transforms,
         transform_node,
-        ackermann_to_twist_node,
+        #ackermann_to_twist_node,
         ros_gz_bridge_node,
-        slam_launch,
-        rviz,
+        localization_launch_delayed,
+        rviz_delayed,
         #robot_state_publisher,
         static_transform_publisher
         ])

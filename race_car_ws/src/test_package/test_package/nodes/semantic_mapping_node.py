@@ -94,11 +94,41 @@ class SemanticMappingNode(Node):
         map_frame = self.current_map.header.frame_id
 
         current_time = self.get_clock().now()
-        for cone in msg.cones:
+        for i, cone in enumerate(msg.cones):
+            self.get_logger().info(
+                f"[YOLO_RAW] i={i:02d} type={int(cone.type)} "
+                f"frame={cone.header.frame_id} "
+                f"p=({cone.position.x:.2f},{cone.position.y:.2f},{cone.position.z:.2f})"
+            )
             trans_point = self.transform_point_to_frame(cone.position, cone.header, map_frame)
             if trans_point is None:
                 continue
             # Store the cone’s world coordinates (instead of grid coordinates)
+
+            # --- DEBUG: after TF, check where this cone lands in the occupancy grid ---
+            width = self.current_map.info.width
+            height = self.current_map.info.height
+            resolution = self.current_map.info.resolution
+            origin_x = self.current_map.info.origin.position.x
+            origin_y = self.current_map.info.origin.position.y
+
+            # log only first few cones per callback to avoid spam
+            if i < 5:
+                gx = int((trans_point.point.x - origin_x) / resolution)
+                gy = int((trans_point.point.y - origin_y) / resolution)
+
+                in_bounds = (0 <= gx < width) and (0 <= gy < height)
+                occ = None
+                if in_bounds:
+                    occ = int(self.current_map.data[gy * width + gx])
+
+                self.get_logger().info(
+                    f"[YOLO_TF] i={i:02d} type={int(cone.type)} map_frame={map_frame} "
+                    f"p_map=({trans_point.point.x:.2f},{trans_point.point.y:.2f}) "
+                    f"grid=({gx},{gy}) in_bounds={in_bounds} occ={occ}"
+                )
+            # --- END DEBUG ---
+
             self.new_cones.append((trans_point.point.x, trans_point.point.y, cone.type, current_time))
 
     def cleanup_cones(self):
@@ -152,7 +182,6 @@ class SemanticMappingNode(Node):
 
         # Create a mask where occupied cells are True and free/unknown cells are False
         occupied_mask = (data_array == 100)
-
         # Find/Label connected regions in the 2d array
         labeled_array, num_connected_regions = label(occupied_mask)
 
@@ -330,13 +359,13 @@ class SemanticMappingNode(Node):
         :return: The transformed point or None if the transform failed.
         """
         try:
-            stamp_time = rclpy.time.Time.from_msg(header.stamp)
             transform_stamped = self.tf_buffer.lookup_transform(
-                target_frame,
-                header.frame_id,
-                stamp_time,
-                timeout=Duration(seconds=0.5)
+            target_frame,
+            header.frame_id,
+            rclpy.time.Time(),
+            timeout=Duration(seconds=0.5)
             )
+
             ps = PointStamped()
             ps.header = header
             ps.point = point
