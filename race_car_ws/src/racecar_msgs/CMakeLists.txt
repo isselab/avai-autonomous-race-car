@@ -11,6 +11,7 @@ find_package(geometry_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
+find_package(action_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -20,10 +21,12 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   msg/DetectedConeArray.msg
   msg/SemanticCell.msg
   msg/SemanticGrid.msg
+  action/Server.action
   DEPENDENCIES
     std_msgs
     geometry_msgs
     nav_msgs
+    action_msgs
 )
 
 ament_export_dependencies(
@@ -31,6 +34,7 @@ ament_export_dependencies(
   std_msgs
   geometry_msgs
   nav_msgs
+  action_msgs
 )
 
 ament_package()

@@ -22,18 +22,24 @@ class DrivingNode(Node):
             self.action_callback
         )
 
+       # Timer to continuously publish velocity commands
+       self.create_timer(0.1, self.publish_velocity)
+
+    def publish_velocity(self):
+        """Continuously publish velocity: 0.1 if driving, 0.0 if stopped."""
+        msg = Twist()
+        if self.is_driving:
+            msg.linear.x = 0.1
+        else:
+            msg.linear.x = 0.0
+        self.publisher.publish(msg)
+
     def start_navigation(self, input_msg):
         if input_msg.data == "start":
             self.is_driving = True
-            msg = Twist()
-            msg.linear.x = .1
-            self.publisher.publish(msg)
 
         elif input_msg.data == "stop":
             self.is_driving = False
-            msg = Twist()
-            msg.linear.x = 0.0
-            self.publisher.publish(msg)
 
     def action_callback(self, goal_handle):
         if goal_handle.request.connect == "connect":

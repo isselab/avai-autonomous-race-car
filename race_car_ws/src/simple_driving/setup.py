@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'driving_node = simple_driving.driving_node:main',
+            'kill_switch_node = simple_driving.kill_switch_node:main',
         ],
     },
 )
